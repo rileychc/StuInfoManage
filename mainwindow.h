@@ -1,8 +1,29 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "Change.h"
+#include "Class.h"
+#include "Department.h"
+#include "Punishment.h"
+#include "Reward.h"
+#include "Student.h"
+#include "sql.h"
+#include <QString>
+#include <QStringList>
+#include <QVBoxLayout>
+#include <Qdebug>
+#include <qlogging.h>
+#include <stdio.h>
+#include <string>
+// #include "./ui_mainwindow.h"
+#include "/Users/riley/Project/build-rileySQL-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
+
+using namespace std;
+
 #include <QMainWindow>
 #include <QTableWidgetItem>
+
+extern C_mysql mysql;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -32,12 +53,10 @@ class MainWindow : public QMainWindow {
     void on_pns_accepted();
     void on_pns_rejected();
 
-    void on_stu_query_Button_clicked();
-    void on_tabWidget_tabBarClicked(int index);
     void on_stu_clapushButton_clicked();
-
     void on_tableWidget_itemChanged(QTableWidgetItem *item);
 
+    void on_stu_query_Button_clicked();
     void on_chg_query_p_clicked();
 
     void on_rw_query_p_clicked();
