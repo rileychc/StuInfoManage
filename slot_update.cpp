@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 
-void MainWindow::on_del_p_clicked() {
-    QTableWidgetItem *item = ui->tableWidget->currentItem();
+void MainWindow::on_tableWidget_itemChanged(QTableWidgetItem *item) {
     int row = item->row();       // 获取行号
     int column = item->column(); // 获取列号
     QTableWidgetItem *pri_key = ui->tableWidget->item(row, 0);
@@ -9,7 +8,7 @@ void MainWindow::on_del_p_clicked() {
     string set_dst = item->text().toStdString(); // 获取更新后的内容
     switch (tb_select) {
     case 0: {
-        Student stu(&mysql);
+        Student stu(&sqlObj);
         switch (column) {
         case 0:
             set_src = "studentid";
@@ -38,13 +37,12 @@ void MainWindow::on_del_p_clicked() {
         }
         string whe_src = "studentid";
         string whe_dst = pri_key->text().toStdString();
-        stu.mdelete(set_src, set_dst, whe_src,
-                    whe_dst); // update [table] set tg=text where uptg=uu;
-        on_stu_query_Button_clicked();
+        stu.update(set_src, set_dst, whe_src,
+                   whe_dst); // update [table] set tg=text where uptg=uu;
         break;
     }
     case 1: {
-        Change chg(&mysql);
+        Change chg(&sqlObj);
         switch (column) {
         case 0:
             set_src = "id";
@@ -65,13 +63,12 @@ void MainWindow::on_del_p_clicked() {
         }
         string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();
-        chg.mdelete(set_src, set_dst, whe_src,
-                    whe_dst); // mdelete [table] set tg=text where uptg=uu;
-        on_chg_query_p_clicked();
+        chg.update(set_src, set_dst, whe_src,
+                   whe_dst); // update [table] set tg=text where uptg=uu;
         break;
     }
     case 2: {
-        Reward rw(&mysql);
+        Reward rw(&sqlObj);
         switch (column) {
         case 0:
             set_src = "id";
@@ -92,13 +89,12 @@ void MainWindow::on_del_p_clicked() {
         }
         string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();
-        rw.mdelete(set_src, set_dst, whe_src,
-                   whe_dst); // mdelete [table] set tg=text where uptg=uu;
-        on_rw_query_p_clicked();
+        rw.update(set_src, set_dst, whe_src,
+                  whe_dst); // update [table] set tg=text where uptg=uu;
         break;
     }
     case 3: {
-        Punishment pns(&mysql);
+        Punishment pns(&sqlObj);
         switch (column) {
         case 0:
             set_src = "id";
@@ -123,13 +119,12 @@ void MainWindow::on_del_p_clicked() {
         }
         string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();
-        pns.mdelete(set_src, set_dst, whe_src,
-                    whe_dst); // mdelete [table] set tg=text where uptg=uu;
-        on_pns__query_p_clicked();
+        pns.update(set_src, set_dst, whe_src,
+                   whe_dst); // update [table] set tg=text where uptg=uu;
         break;
     }
     case 4: {
-        Department depa(&mysql);
+        Department depa(&sqlObj);
         switch (column) {
         case 0:
             set_src = "id";
@@ -141,13 +136,12 @@ void MainWindow::on_del_p_clicked() {
         }
         string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();
-        depa.mdelete(set_src, set_dst, whe_src,
-                     whe_dst); // mdelete [table] set tg=text where uptg=uu;
-        on_depa__query_p_clicked();
+        depa.update(set_src, set_dst, whe_src,
+                    whe_dst); // update [table] set tg=text where uptg=uu;
         break;
     }
     case 5: {
-        C_class cls(&mysql);
+        C_class cls(&sqlObj);
         switch (column) {
         case 0:
             set_src = "id";
@@ -159,9 +153,8 @@ void MainWindow::on_del_p_clicked() {
         }
         string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();
-        cls.mdelete(set_src, set_dst, whe_src,
-                    whe_dst); // mdelete [table] set tg=text where uptg=uu;
-        on_cls__query_p_clicked();
+        cls.update(set_src, set_dst, whe_src,
+                   whe_dst); // update [table] set tg=text where uptg=uu;
         break;
     }
     }

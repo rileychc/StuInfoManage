@@ -11,20 +11,18 @@
 
 #include "sql.h"
 
-class Punishment {
+class Punishment : public BaseCtl {
   public:
-    string id;
     string punishment_code;
     string studentid;
     string rec_time;
     string description;
     string enable;
-    C_mysql *my;
-    Punishment(C_mysql *m) { my = m; }
-    void mdelete(string &aco, string &tg, string &key, string &keytg);
+    Punishment(MYSQL *sql) : BaseCtl(sql) { tb_name = "punishment"; }
+    // void mdelete(string &aco, string &tg, string &key, string &keytg);
     void insert();
-    void select(string &aco, string &tg);
-    void update(string &upd, string &updtg, string &aco, string &tg);
+    // void select(string &aco, string &tg);
+    // void update(string &upd, string &updtg, string &aco, string &tg);
 };
 
 #endif // _PUNISHMENT_H_

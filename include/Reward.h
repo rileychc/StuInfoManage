@@ -10,18 +10,16 @@
 #define _REWARD_H_
 #include "sql.h"
 
-class Reward {
+class Reward : public BaseCtl {
   public:
-    string id;
     string studentid;
     string reward_code;
     string rec_time;
     string description;
-    C_mysql *my;
-    Reward(C_mysql *m) { my = m; }
-    void mdelete(string &aco, string &tg, string &key, string &keytg);
+    Reward(MYSQL *sql) : BaseCtl(sql) { tb_name = "reward"; }
+    // void mdelete(string &aco, string &tg, string &key, string &keytg);
     void insert();
-    void select(string &aco, string &tg);
-    void update(string &upd, string &updtg, string &aco, string &tg);
+    // void select(string &aco, string &tg);
+    // void update(string &upd, string &updtg, string &aco, string &tg);
 };
 #endif // _REWARD_H_

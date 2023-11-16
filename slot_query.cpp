@@ -3,9 +3,9 @@
 void MainWindow::on_stu_query_Button_clicked() {
     tb_select = 0;
     on_stu_clapushButton_clicked();
-    Student stu(&mysql);
+    Student stu(&sqlObj);
     string tg = "student";
-    auto res = mysql.select(tg);
+    auto res = stu.select(tg);
     // rows/fields  行/列
     // printf("rows:%d\n", rows);
     int fields = mysql_num_fields(res);
@@ -29,11 +29,12 @@ void MainWindow::on_stu_query_Button_clicked() {
 }
 
 void MainWindow::on_chg_query_p_clicked() {
+    Change chg(&sqlObj);
     tb_select = 1;
     string tg = "`change`";
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);
-    auto res = mysql.select(tg);
+    auto res = chg.select(tg);
     int fields = mysql_num_fields(res);
     ui->tableWidget->setColumnCount(fields); // rows/fields  行/列
     // printf("rows:%d\n", rows);
@@ -57,11 +58,12 @@ void MainWindow::on_chg_query_p_clicked() {
 }
 
 void MainWindow::on_rw_query_p_clicked() {
+    Reward rw(&sqlObj);
     tb_select = 2;
     string tg = "reward";
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);
-    auto res = mysql.select(tg);
+    auto res = rw.select(tg);
     int fields = mysql_num_fields(res);
     ui->tableWidget->setColumnCount(fields);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "记录号"
@@ -91,11 +93,12 @@ void MainWindow::on_rw_query_p_clicked() {
 }
 
 void MainWindow::on_pns__query_p_clicked() {
+    Punishment pns(&sqlObj);
     tb_select = 3;
     string tg = "punishment";
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);
-    auto res = mysql.select(tg);
+    auto res = pns.select(tg);
     int fields = mysql_num_fields(res);
     ui->tableWidget->setColumnCount(fields);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "记录号"
@@ -126,11 +129,12 @@ void MainWindow::on_pns__query_p_clicked() {
 }
 
 void MainWindow::on_depa__query_p_clicked() {
+    Department dep(&sqlObj);
     tb_select = 4;
     string tg = "department";
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);
-    auto res = mysql.select(tg);
+    auto res = dep.select(tg);
     int fields = mysql_num_fields(res);
     ui->tableWidget->setColumnCount(fields);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "编号"
@@ -157,11 +161,12 @@ void MainWindow::on_depa__query_p_clicked() {
 }
 
 void MainWindow::on_cls__query_p_clicked() {
+    C_class cls(&sqlObj);
     tb_select = 5;
     string tg = "class";
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);
-    auto res = mysql.select(tg);
+    auto res = cls.select(tg);
     int fields = mysql_num_fields(res);
     ui->tableWidget->setColumnCount(fields);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "编号"

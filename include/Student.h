@@ -10,9 +10,8 @@
 #define _STUDENT_H_
 #include "sql.h"
 
-class Student {
+class Student : public BaseCtl {
   public:
-    string id;         // 学号
     string name;       // 姓名
     string sex;        // 性别
     string stu_class;  // 班级
@@ -22,13 +21,11 @@ class Student {
     string change_code;       // 学籍变动编号
     string reward_levels;     // 奖励编号
     string punishment_levels; // 惩罚编号
-    C_mysql *my;
-    Student(C_mysql *m) { my = m; }
-    void mdelete(string &aco, string &tg, string &key, string &keytg);
+    Student(MYSQL *sql) : BaseCtl(sql) { tb_name = "student"; }
+    // void mdelete(string &aco, string &tg, string &key, string &keytg);
     void insert();
-    void select();
-    void select(string &aco, string &tg);
-    void update(string &upd, string &updtg, string &aco, string &tg);
+    // void select(string &aco, string &tg);
+    // void update(string &upd, string &updtg, string &aco, string &tg);
 };
 
 #endif // _STUDENT_H_

@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 void MainWindow::on_cls_ar_accepted() {
-    C_class cls(&mysql);
+    C_class cls(&sqlObj);
     cls.id = this->ui->t_cla_id->text().toStdString();
     cls.name = this->ui->t_cla_name->text().toStdString();
     cls.monitor = this->ui->t_cla_monitor->text().toStdString();
@@ -15,7 +15,7 @@ void MainWindow::on_cla_ar_rejected() {
 }
 
 void MainWindow::on_depa_ar_accepted() {
-    Department dep(&mysql);
+    Department dep(&sqlObj);
     dep.id = this->ui->t_depa_id->text().toStdString();
     dep.name = this->ui->t_depa_name->text().toStdString();
     dep.insert();
@@ -27,7 +27,7 @@ void MainWindow::on_depa_ar_rejected() {
 }
 
 void MainWindow::on_per_ar_accepted() {
-    Student stu(&mysql);
+    Student stu(&sqlObj);
     stu.id = this->ui->t_id->text().toStdString();
     stu.name = this->ui->t_name->text().toStdString();
     stu.stu_class = this->ui->t_class->text().toStdString();
@@ -50,7 +50,7 @@ void MainWindow::on_per_ar_rejected() { // 学籍变更输入
 }
 
 void MainWindow::on_chg_accepted() {
-    Change change(&mysql);
+    Change change(&sqlObj);
     change.id = this->ui->t_ch_id->text().toStdString();
     change.change_code = this->ui->t_ch_stuid->text().toStdString();
     change.rec_time = this->ui->t_ch_tm->text().toStdString();
@@ -76,7 +76,7 @@ void MainWindow::on_rw_rejected() {
 }
 
 void MainWindow::on_rw_accepted() {
-    Reward rw(&mysql);
+    Reward rw(&sqlObj);
     rw.id = this->ui->t_rw_id->text().toStdString();
     rw.reward_code = this->ui->t_rw_lv->text().toStdString();
     rw.rec_time = this->ui->t_rw_tm->text().toStdString();
@@ -94,7 +94,7 @@ void MainWindow::on_pns_rejected() {
 }
 
 void MainWindow::on_pns_accepted() {
-    Punishment pns(&mysql);
+    Punishment pns(&sqlObj);
     pns.id = this->ui->t_pns_id->text().toStdString();
     pns.punishment_code = this->ui->t_pns_lv->text().toStdString();
     pns.description = this->ui->t_pns_des->text().toStdString();

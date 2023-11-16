@@ -11,21 +11,18 @@
 
 #include "sql.h"
 
-class Change {
+class Change : public BaseCtl {
   public:
-    string id;
     string studentid;
     string change_code;
     string rec_time;
     string description;
+    Change(MYSQL *sql) : BaseCtl(sql) { tb_name = "`change`"; }
 
-    C_mysql *my;
-    Change(C_mysql *m) { my = m; }
-
-    void mdelete(string &aco, string &tg, string &key, string &keytg);
+    // void mdelete(string &aco, string &tg, string &key, string &keytg);
     void insert();
-    void select(string &aco, string &tg);
-    void update(string &upd, string &updtg, string &aco, string &tg);
+    // void select(string &aco, string &tg);
+    // void update(string &upd, string &updtg, string &aco, string &tg);
 };
 
 #endif // _CHANGE_H_

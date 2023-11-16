@@ -9,17 +9,15 @@
 #ifndef _CLASS_H_
 #define _CLASS_H_
 #include "sql.h"
-class C_class {
+class C_class : public BaseCtl {
   public:
-    string id;
     string name;
     string monitor;
 
-    C_mysql *my;
-    C_class(C_mysql *m) { my = m; }
-    void mdelete(string &aco, string &tg, string &key, string &keytg);
+    C_class(MYSQL *sql) : BaseCtl(sql) { tb_name = "class"; }
+    // void mdelete(string &aco, string &tg, string &key, string &keytg);
     void insert();
-    void select(string &aco, string &tg);
-    void update(string &upd, string &updtg, string &aco, string &tg);
+    // void select(string &aco, string &tg);
+    // void update(string &upd, string &updtg, string &aco, string &tg);
 };
 #endif // _CLASS_H_

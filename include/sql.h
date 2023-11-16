@@ -21,18 +21,23 @@ using namespace std;
 #define KING_DB_PASSWORD "rijwiC-3kirnu-porpyx" // 密码
 #define KING_DB_DEFAULTDB "stu_info_manage"     // 数据库名
 
-class C_mysql {
+class BaseCtl {
 
   public:
-    MYSQL mysql;
-    C_mysql() {}
-    ~C_mysql() { mysql_close(&mysql); }
-    int connect();
+    MYSQL *mysql;
+    string id;
+    string tb_name;
+    BaseCtl(MYSQL *sql) : mysql(sql) {}
+    ~BaseCtl() {}
+    // int connect();
     int mysql_insert(string &ctl);
-    int mysql_update(string &ctl);
-    int mysql_delete(string &ctl);
-    MYSQL_RES *mysql_select(string &ctl);
+    // int mysql_update(string &ctl);
+    // int mysql_delete(string &ctl);
+    // MYSQL_RES *mysql_select(string &ctl);
     MYSQL_RES *select(string &tbl);
+    void update(string &upd, string &updtg, string &aco, string &tg);
+    void mdelete(string &aco, string &tg, string &key, string &keytg);
+    void select(string &aco, string &tg);
 };
 
 #endif // _SQL_H_
