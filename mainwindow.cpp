@@ -14,11 +14,6 @@
 #include <stdio.h>
 // #include
 // "/Users/riley/Project/build-StuInfoManage-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
-#include "chg_query.h"
-#include "cls_query.h"
-#include "depar_wd.h"
-#include "pns_query.h"
-#include "rw_query.h"
 #include <string>
 using namespace std;
 
@@ -79,34 +74,7 @@ void MainWindow::on_per_ar_rejected() { // 学籍变更输入
     this->ui->t_birthday->clear();
     this->ui->t_id->clear();
 }
-// void MainWindow::on_pushButton_clicked() {
 
-// }
-
-// void MainWindow::on_pushButton_3_clicked() {
-
-// }
-
-// void MainWindow::on_pushButton_4_clicked() {
-//     rw_query w;
-//     w.show();
-// }
-
-// void MainWindow::on_pushButton_5_clicked() {
-//     pns_query w;
-//     w.show();
-// }
-
-// void MainWindow::on_pushButton_6_clicked() {
-
-//    depar_wd w;
-//    w.show();
-//}
-
-// void MainWindow::on_pushButton_7_clicked() {
-//     cls_query w;
-//     w.show();
-// }
 
 void MainWindow::on_chg_accepted() {
     Change change(&mysql);
