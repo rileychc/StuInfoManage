@@ -50,8 +50,8 @@ void Department::mdelete(string &aco, string &tg) {
 }
 void Department::update(string &upd, string &updtg, string &aco, string &tg) {
 
-    string ctl = "update class set " + upd + "=" + updtg +
-                 " from class where " + aco + "=" + tg + ";";
+    string ctl = "update department set " + upd + "=" + updtg + "  where " +
+                 aco + "=" + tg + ";";
     if (my->mysql_update(ctl) == 0)
         cout << "数据更新成功！" << endl;
     else {

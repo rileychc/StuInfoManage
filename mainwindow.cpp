@@ -1,5 +1,6 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
+// #include "./ui_mainwindow.h"
+#include "/Users/riley/Project/build-rileySQL-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
 #include "Change.h"
 #include "Class.h"
 #include "Department.h"
@@ -12,8 +13,6 @@
 #include <Qdebug>
 #include <qlogging.h>
 #include <stdio.h>
-// #include
-// "/Users/riley/Project/build-StuInfoManage-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
 #include <string>
 using namespace std;
 
@@ -75,7 +74,6 @@ void MainWindow::on_per_ar_rejected() { // 学籍变更输入
     this->ui->t_id->clear();
 }
 
-
 void MainWindow::on_chg_accepted() {
     Change change(&mysql);
     change.id = this->ui->t_ch_id->text().toStdString();
@@ -132,7 +130,9 @@ void MainWindow::on_pns_accepted() {
 }
 
 void MainWindow::on_stu_query_Button_clicked() {
+    tb_select = 0;
     on_stu_clapushButton_clicked();
+    Student stu(&mysql);
     string tg = "student";
     auto res = mysql.select(tg);
     // rows/fields  行/列
@@ -162,14 +162,6 @@ void MainWindow::on_tabWidget_tabBarClicked(int index) {
     // on_stu_query_Button_clicked();
 }
 
-void MainWindow::on_demo_query_clicked() {
-    chg_query *w = new chg_query();
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(w);
-    setLayout(layout);
-    w->show();
-}
-
 void MainWindow::on_stu_clapushButton_clicked() {
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);
@@ -182,77 +174,322 @@ void MainWindow::on_stu_clapushButton_clicked() {
                                                              << "籍贯");
 }
 
-void MainWindow::on_rw_query_p_clicked() {
-    rw_query *w = new rw_query();
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(w);
-    setLayout(layout);
-    w->show();
-}
-
-void MainWindow::on_pns_query_p_clicked() {
-    pns_query *w = new pns_query();
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(w);
-    setLayout(layout);
-    w->show();
-}
-
-void MainWindow::on_depa_query_p_clicked() {
-    depar_wd *w = new depar_wd();
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(w);
-    setLayout(layout);
-    w->show();
-}
-
-void MainWindow::on_cls_query_p_clicked() {
-    cls_query *w = new cls_query();
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(w);
-    setLayout(layout);
-    w->show();
-}
-
 void MainWindow::on_tableWidget_itemChanged(QTableWidgetItem *item) {
-    Student stu(&mysql);
     int row = item->row();       // 获取行号
     int column = item->column(); // 获取列号
-    QTableWidgetItem *stuid = ui->tableWidget->item(row, 0);
-    string tg;
-    string text = item->text().toStdString(); // 获取更新后的内容
-    switch (column) {
-    case 0:
-        tg = "studentid";
-        break;
-    case 1:
-        tg = "name";
-        text = "'" + text + "'";
-        break;
-    case 2:
-        tg = "sex";
-        text = "'" + text + "'";
-        break;
-    case 3:
-        tg = "class";
-        break;
-    case 4:
-        tg = "deparment";
-        break;
-    case 5:
-        tg = "birthday";
-        break;
-    case 6:
-        tg = "native_place";
-        text = "'" + text + "'";
+    QTableWidgetItem *pri_key = ui->tableWidget->item(row, 0);
+    string set_src;
+    string set_dst = item->text().toStdString(); // 获取更新后的内容
+    switch (tb_select) {
+    case 0: {
+        Student stu(&mysql);
+        switch (column) {
+        case 0:
+            set_src = "studentid";
+            break;
+        case 1:
+            set_src = "name";
+            set_dst = "'" + set_dst + "'";
+            break;
+        case 2:
+            set_src = "sex";
+            set_dst = "'" + set_dst + "'";
+            break;
+        case 3:
+            set_src = "class";
+            break;
+        case 4:
+            set_src = "deparment";
+            break;
+        case 5:
+            set_src = "birthday";
+            break;
+        case 6:
+            set_src = "native_place";
+            set_dst = "'" + set_dst + "'";
+            break;
+        }
+        string whe_src = "studentid";
+        string whe_dst = pri_key->text().toStdString();
+        stu.update(set_src, set_dst, whe_src,
+                   whe_dst); // update [table] set tg=text where uptg=uu;
         break;
     }
-    string uptg = "studentid";
-    string uu = stuid->text().toStdString();
+    case 1: {
+        Change chg(&mysql);
+        switch (column) {
+        case 0:
+            set_src = "id";
+            break;
+        case 1:
+            set_src = "studentid";
+            break;
+        case 2:
+            set_src = "`change`";
+            break;
+        case 3:
+            set_src = "rec_time";
+            break;
+        case 4:
+            set_src = "description";
+            set_dst = "'" + set_dst + "'";
+            break;
+        }
+        string whe_src = "id";
+        string whe_dst = pri_key->text().toStdString();
+        chg.update(set_src, set_dst, whe_src,
+                   whe_dst); // update [table] set tg=text where uptg=uu;
+        break;
+    }
+    case 2: {
+        Reward rw(&mysql);
+        switch (column) {
+        case 0:
+            set_src = "id";
+            break;
+        case 1:
+            set_src = "studentid";
+            break;
+        case 2:
+            set_src = "levels";
+            break;
+        case 3:
+            set_src = "rec_time";
+            break;
+        case 4:
+            set_src = "description";
+            set_dst = "'" + set_dst + "'";
+            break;
+        }
+        string whe_src = "id";
+        string whe_dst = pri_key->text().toStdString();
+        rw.update(set_src, set_dst, whe_src,
+                  whe_dst); // update [table] set tg=text where uptg=uu;
+        break;
+    }
+    case 3: {
+        Punishment pns(&mysql);
+        switch (column) {
+        case 0:
+            set_src = "id";
+            break;
+        case 1:
+            set_src = "studentid";
+            break;
+        case 2:
+            set_src = "levels";
+            break;
+        case 3:
+            set_src = "rec_time";
+            break;
+        case 4:
+            set_src = "enable";
+            set_dst = "'" + set_dst + "'";
+            break;
+        case 5:
+            set_src = "description";
+            set_dst = "'" + set_dst + "'";
+            break;
+        }
+        string whe_src = "id";
+        string whe_dst = pri_key->text().toStdString();
+        pns.update(set_src, set_dst, whe_src,
+                   whe_dst); // update [table] set tg=text where uptg=uu;
+        break;
+    }
+    case 4: {
+        Department depa(&mysql);
+        switch (column) {
+        case 0:
+            set_src = "id";
+            break;
+        case 1:
+            set_src = "name";
+            set_dst = "'" + set_dst + "'";
+            break;
+        }
+        string whe_src = "id";
+        string whe_dst = pri_key->text().toStdString();
+        depa.update(set_src, set_dst, whe_src,
+                    whe_dst); // update [table] set tg=text where uptg=uu;
+        break;
+    }
+    case 5: {
+        C_class cls(&mysql);
+        switch (column) {
+        case 0:
+            set_src = "id";
+            break;
+        case 1:
+            set_src = "name";
+            set_dst = "'" + set_dst + "'";
+            break;
+        }
+        string whe_src = "id";
+        string whe_dst = pri_key->text().toStdString();
+        cls.update(set_src, set_dst, whe_src,
+                   whe_dst); // update [table] set tg=text where uptg=uu;
+        break;
+    }
+    }
+}
 
-    stu.update(tg, text, uptg, uu);
+void MainWindow::on_chg_query_p_clicked() {
+    tb_select = 1;
+    string tg = "`change`";
+    ui->tableWidget->clear();
+    ui->tableWidget->setRowCount(0);
+    auto res = mysql.select(tg);
+    int fields = mysql_num_fields(res);
+    ui->tableWidget->setColumnCount(fields); // rows/fields  行/列
+    // printf("rows:%d\n", rows);
+    // printf("fields:%d\n", fields);
+    // fetch
+    MYSQL_ROW row; // 定义一行的数据
+    int j = 0;
+    while ((row = mysql_fetch_row(res)) != NULL) {
+        this->ui->tableWidget->insertRow(j);
+        for (int i = 0; i < fields; i++) {
+            QTableWidgetItem *item = new QTableWidgetItem(
+                row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
+            // QTableWidgetItem *demo = new QTableWidgetItem(row[i]);
+            // printf("%s ", row[i]);
+            ui->tableWidget->setItem(j, i, item);
+        }
+        // printf("\n");
+        j++;
+    }
+    mysql_free_result(res);
+}
 
-    //     qDebug()
-    // << "Item at (" << row << "," << column << ") has been changed to"
-    // << text;
+void MainWindow::on_rw_query_p_clicked() {
+    tb_select = 2;
+    string tg = "reward";
+    ui->tableWidget->clear();
+    ui->tableWidget->setRowCount(0);
+    auto res = mysql.select(tg);
+    int fields = mysql_num_fields(res);
+    ui->tableWidget->setColumnCount(fields);
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "记录号"
+                                                             << "学号"
+                                                             << "级别代码"
+                                                             << "记录时间"
+                                                             << "描述");
+    // rows/fields  行/列
+    // printf("rows:%d\n", rows);
+    // printf("fields:%d\n", fields);
+    // fetch
+    MYSQL_ROW row; // 定义一行的数据
+    int j = 0;
+    while ((row = mysql_fetch_row(res)) != NULL) {
+        this->ui->tableWidget->insertRow(j);
+        for (int i = 0; i < fields; i++) {
+            QTableWidgetItem *item = new QTableWidgetItem(
+                row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
+            // QTableWidgetItem *demo = new QTableWidgetItem(row[i]);
+            // printf("%s ", row[i]);
+            ui->tableWidget->setItem(j, i, item);
+        }
+        // printf("\n");
+        j++;
+    }
+    mysql_free_result(res);
+}
+
+void MainWindow::on_pns__query_p_clicked() {
+    tb_select = 3;
+    string tg = "punishment";
+    ui->tableWidget->clear();
+    ui->tableWidget->setRowCount(0);
+    auto res = mysql.select(tg);
+    int fields = mysql_num_fields(res);
+    ui->tableWidget->setColumnCount(fields);
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "记录号"
+                                                             << "学号"
+                                                             << "级别代码"
+                                                             << "记录时间"
+                                                             << "是否生效"
+                                                             << "描述");
+    // rows/fields  行/列
+    // printf("rows:%d\n", rows);
+    // printf("fields:%d\n", fields);
+    // fetch
+    MYSQL_ROW row; // 定义一行的数据
+    int j = 0;
+    while ((row = mysql_fetch_row(res)) != NULL) {
+        this->ui->tableWidget->insertRow(j);
+        for (int i = 0; i < fields; i++) {
+            QTableWidgetItem *item = new QTableWidgetItem(
+                row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
+            // QTableWidgetItem *demo = new QTableWidgetItem(row[i]);
+            // printf("%s ", row[i]);
+            ui->tableWidget->setItem(j, i, item);
+        }
+        // printf("\n");
+        j++;
+    }
+    mysql_free_result(res);
+}
+
+void MainWindow::on_depa__query_p_clicked() {
+    tb_select = 4;
+    string tg = "department";
+    ui->tableWidget->clear();
+    ui->tableWidget->setRowCount(0);
+    auto res = mysql.select(tg);
+    int fields = mysql_num_fields(res);
+    ui->tableWidget->setColumnCount(fields);
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "编号"
+                                                             << "全称");
+    // rows/fields  行/列
+    // printf("rows:%d\n", rows);
+    // printf("fields:%d\n", fields);
+    // fetch
+    MYSQL_ROW row; // 定义一行的数据
+    int j = 0;
+    while ((row = mysql_fetch_row(res)) != NULL) {
+        this->ui->tableWidget->insertRow(j);
+        for (int i = 0; i < fields; i++) {
+            QTableWidgetItem *item = new QTableWidgetItem(
+                row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
+            // QTableWidgetItem *demo = new QTableWidgetItem(row[i]);
+            // printf("%s ", row[i]);
+            ui->tableWidget->setItem(j, i, item);
+        }
+        // printf("\n");
+        j++;
+    }
+    mysql_free_result(res);
+}
+
+void MainWindow::on_cls__query_p_clicked() {
+    tb_select = 5;
+    string tg = "class";
+    ui->tableWidget->clear();
+    ui->tableWidget->setRowCount(0);
+    auto res = mysql.select(tg);
+    int fields = mysql_num_fields(res);
+    ui->tableWidget->setColumnCount(fields);
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "编号"
+                                                             << "全称"
+                                                             << "班长学号");
+    // rows/fields  行/列
+    // printf("rows:%d\n", rows);
+    // printf("fields:%d\n", fields);
+    // fetch
+    MYSQL_ROW row; // 定义一行的数据
+    int j = 0;
+    while ((row = mysql_fetch_row(res)) != NULL) {
+        this->ui->tableWidget->insertRow(j);
+        for (int i = 0; i < fields; i++) {
+            QTableWidgetItem *item = new QTableWidgetItem(
+                row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
+            // QTableWidgetItem *demo = new QTableWidgetItem(row[i]);
+            // printf("%s ", row[i]);
+            ui->tableWidget->setItem(j, i, item);
+        }
+        // printf("\n");
+        j++;
+    }
+    mysql_free_result(res);
 }

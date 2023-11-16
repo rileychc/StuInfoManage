@@ -56,7 +56,7 @@ void Student::update(string &upd, string &updtg, string &aco, string &tg) {
 
     string ctl = "update student set " + upd + "=" + updtg + " where " + aco +
                  "=" + tg + ";";
-    cout<<ctl<<endl;
+    cout << ctl << endl;
     if (my->mysql_update(ctl) == 0)
         cout << "数据更新成功！" << endl;
     else {

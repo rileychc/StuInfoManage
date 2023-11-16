@@ -7,7 +7,6 @@
 > Description:
  ************************************************************************/
 #include "Change.h"
-#include "mysql.h"
 
 void Change::insert() {
     string ctl = "insert into `change` values (" + id + "," + studentid + "," +
@@ -53,8 +52,8 @@ void Change::mdelete(string &aco, string &tg) {
 
 void Change::update(string &upd, string &updtg, string &aco, string &tg) {
 
-    string ctl = "update class set " + upd + "=" + updtg +
-                 " from class where " + aco + "=" + tg + ";";
+    string ctl = "update `change` set " + upd + "=" + updtg + "  where " + aco +
+                 "=" + tg + ";";
     if (my->mysql_update(ctl) == 0)
         cout << "数据更新成功！" << endl;
     else {

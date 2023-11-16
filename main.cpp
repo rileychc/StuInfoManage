@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "sql.h"
 #include <QApplication>
-#include "cls_query.h"
 
 C_mysql mysql;
 int main(int argc, char *argv[]) {
