@@ -1,15 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-// #include "./ui_mainwindow.h"
-#include "/Users/riley/Project/build-rileySQL-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
+#include "./ui_mainwindow.h"
+// #include
+// "/Users/riley/Project/build-rileySQL-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
+#include "BaseCtl.h"
 #include "Change.h"
 #include "Class.h"
 #include "Department.h"
 #include "Punishment.h"
 #include "Reward.h"
 #include "Student.h"
-#include "sql.h"
 #include <QString>
 #include <QStringList>
 #include <QVBoxLayout>
@@ -34,9 +35,9 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow {
     Q_OBJECT
     int tb_select = 0; // 0为学生表
-
   public:
     MainWindow(QWidget *parent = nullptr);
+    void base_query(BaseCtl *p);
     ~MainWindow();
 
   private slots:
@@ -61,8 +62,10 @@ class MainWindow : public QMainWindow {
     void on_depa__query_p_clicked();
     void on_cls__query_p_clicked();
 
-    void on_tableWidget_itemChanged(QTableWidgetItem *item);
+    void on_tableWidget_cellChanged(int row, int column);
     void on_del_p_clicked();
+
+    void on_tabWidget_destroyed();
 
   private:
     Ui::MainWindow *ui;

@@ -12,7 +12,7 @@ void Punishment::insert() {
     string ctl = "insert into punishment values (" + id + "," + studentid +
                  "," + punishment_code + "," + rec_time + ",'" + enable +
                  "','" + description + "');";
-    if (mysql_insert(ctl) != 0) {
+    if (BaseCtl::insert(ctl) != 0) {
         cout << "插入成功" << endl;
     } else {
         cout << "插入失败,请确保学生存在或日期正确或生效是否为TF" << endl;

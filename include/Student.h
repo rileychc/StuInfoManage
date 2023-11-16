@@ -8,8 +8,7 @@
  ************************************************************************/
 #ifndef _STUDENT_H_
 #define _STUDENT_H_
-#include "sql.h"
-
+#include "BaseCtl.h"
 class Student : public BaseCtl {
   public:
     string name;       // 姓名
@@ -22,10 +21,7 @@ class Student : public BaseCtl {
     string reward_levels;     // 奖励编号
     string punishment_levels; // 惩罚编号
     Student(MYSQL *sql) : BaseCtl(sql) { tb_name = "student"; }
-    // void mdelete(string &aco, string &tg, string &key, string &keytg);
     void insert();
-    // void select(string &aco, string &tg);
-    // void update(string &upd, string &updtg, string &aco, string &tg);
 };
 
 #endif // _STUDENT_H_

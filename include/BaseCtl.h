@@ -30,7 +30,7 @@ class BaseCtl {
     BaseCtl(MYSQL *sql) : mysql(sql) {}
     ~BaseCtl() {}
     // int connect();
-    int mysql_insert(string &ctl);
+    int insert(string &ctl);
     // int mysql_update(string &ctl);
     // int mysql_delete(string &ctl);
     // MYSQL_RES *mysql_select(string &ctl);

@@ -1,11 +1,11 @@
 #include "mainwindow.h"
 
-void MainWindow::on_tableWidget_itemChanged(QTableWidgetItem *item) {
-    int row = item->row();       // 获取行号
-    int column = item->column(); // 获取列号
+void MainWindow::on_tableWidget_cellChanged(int row, int column) {
     QTableWidgetItem *pri_key = ui->tableWidget->item(row, 0);
     string set_src;
-    string set_dst = item->text().toStdString(); // 获取更新后的内容
+    string set_dst = ui->tableWidget->item(row, column)
+                         ->text()
+                         .toStdString(); // 获取更新后的内容
     switch (tb_select) {
     case 0: {
         Student stu(&sqlObj);

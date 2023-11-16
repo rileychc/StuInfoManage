@@ -13,7 +13,7 @@ void C_class::insert() {
     string ctl =
         "insert into class values (" + id + ",'" + name + "'," + monitor + ");";
     cout << "ctl为:" << ctl << endl;
-    if (mysql_insert(ctl) != 0) {
+    if (BaseCtl::insert(ctl) != 0) {
         cout << "插入成功" << endl;
     } else {
         cout << "插入失败,班级已存在" << endl;

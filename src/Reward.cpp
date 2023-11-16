@@ -11,7 +11,7 @@
 void Reward::insert() {
     string ctl = "insert into reward values (" + id + "," + studentid + "," +
                  reward_code + "," + rec_time + ",'" + description + "');";
-    if (mysql_insert(ctl) != 0) {
+    if (BaseCtl::insert(ctl) != 0) {
         cout << "插入成功" << endl;
     } else {
         cout << "插入失败,请确保学生存在或日期正确" << endl;

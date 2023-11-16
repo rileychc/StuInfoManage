@@ -9,8 +9,7 @@
 #ifndef _CHANGE_H_
 #define _CHANGE_H_
 
-#include "sql.h"
-
+#include "BaseCtl.h"
 class Change : public BaseCtl {
   public:
     string studentid;
@@ -18,11 +17,7 @@ class Change : public BaseCtl {
     string rec_time;
     string description;
     Change(MYSQL *sql) : BaseCtl(sql) { tb_name = "`change`"; }
-
-    // void mdelete(string &aco, string &tg, string &key, string &keytg);
     void insert();
-    // void select(string &aco, string &tg);
-    // void update(string &upd, string &updtg, string &aco, string &tg);
 };
 
 #endif // _CHANGE_H_

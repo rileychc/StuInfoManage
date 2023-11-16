@@ -2,6 +2,9 @@
 
 void MainWindow::on_del_p_clicked() {
     QTableWidgetItem *item = ui->tableWidget->currentItem();
+    if (nullptr == item) {
+        return;
+    }
     int row = item->row();       // 获取行号
     int column = item->column(); // 获取列号
     QTableWidgetItem *pri_key = ui->tableWidget->item(row, 0);

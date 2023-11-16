@@ -17,3 +17,5 @@ void MainWindow::on_stu_clapushButton_clicked() {
                                                              << "生日"
                                                              << "籍贯");
 }
+
+void MainWindow::on_tabWidget_destroyed() { mysql_close(&sqlObj); }

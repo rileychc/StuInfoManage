@@ -9,7 +9,7 @@
 #include "Department.h"
 void Department::insert() {
     string ctl = "insert into department values (" + id + ",'" + name + "');";
-    if (mysql_insert(ctl) != 0) {
+    if (BaseCtl::insert(ctl) != 0) {
         cout << "插入成功" << endl;
     } else {
         cout << "插入失败,院校已存在" << endl;

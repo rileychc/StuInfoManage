@@ -6,9 +6,9 @@
 > Copyright:
 > Description:
  ************************************************************************/
-#include "sql.h"
+#include "BaseCtl.h"
 
-int BaseCtl::mysql_insert(string &ctl) {
+int BaseCtl::insert(string &ctl) {
 
     if (mysql_real_query(mysql, ctl.c_str(),
                          ctl.length())) { //(返回0为成功)
@@ -17,6 +17,7 @@ int BaseCtl::mysql_insert(string &ctl) {
     }
     return -1;
 }
+
 MYSQL_RES *BaseCtl::select(string &tbl) {
 
     string ctl = "select * from " + tbl + ";";

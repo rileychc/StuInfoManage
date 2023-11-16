@@ -20,7 +20,6 @@ int connect() {
     }
     return 0;
 }
-// mysql_close(&sqlObj);
 int main(int argc, char *argv[]) {
     if (connect() != 0) {
         cout << "数据库连接失败" << endl;

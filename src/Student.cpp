@@ -12,7 +12,7 @@ void Student::insert() {
     string ctl = "insert into student values (" + id + ",'" + name + "','" +
                  sex + "'," + stu_class + "," + department + "," + birthday +
                  ",'" + native_place + "');";
-    if (mysql_insert(ctl) != 0) {
+    if (BaseCtl::insert(ctl) != 0) {
         cout << "插入成功" << endl;
     } else {
         cout << "插入失败,请确保班级和院校存在或日期正确或性别" << endl;
