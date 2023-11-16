@@ -10,8 +10,8 @@
 #include "mysql.h"
 
 void Change::insert() {
-    string ctl = "insert into change values (" + id + "," + studentid + "," +
-                 change_code + "," + rec_time + "," + description + ");";
+    string ctl = "insert into `change` values (" + id + "," + studentid + "," +
+                 change_code + "," + rec_time + ",'" + description + "');";
     if (my->mysql_insert(ctl) != 0) {
         cout << "插入成功" << endl;
     } else {

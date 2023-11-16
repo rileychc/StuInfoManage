@@ -1,19 +1,13 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "Class.h"
-#include "Punishment.h"
-#include "Reward.h"
-#include "Student.h"
-#include "Student.h"
-
-// #include
-// "/Users/riley/Project/build-StuInfoManage-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
 #include "Change.h"
 #include "Class.h"
 #include "Department.h"
 #include "Punishment.h"
 #include "Reward.h"
 #include "Student.h"
+// #include
+// "/Users/riley/Project/build-StuInfoManage-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
 #include "chg_query.h"
 #include "cls_query.h"
 #include "depar_wd.h"
@@ -56,7 +50,7 @@ void MainWindow::on_depa_ar_rejected() {
 
 void MainWindow::on_per_ar_accepted() {
     Student stu(&mysql);
-    stu.id = this->ui->t_name->text().toStdString();
+    stu.id = this->ui->t_id->text().toStdString();
     stu.name = this->ui->t_name->text().toStdString();
     stu.stu_class = this->ui->t_class->text().toStdString();
     stu.sex = this->ui->t_sex->text().toStdString();
@@ -74,7 +68,7 @@ void MainWindow::on_per_ar_rejected() { // 学籍变更输入
     this->ui->t_department->clear();
     this->ui->t_nactive_place->clear();
     this->ui->t_birthday->clear();
-    this->ui->t_name->clear();
+    this->ui->t_id->clear();
 }
 // void MainWindow::on_pushButton_clicked() {
 //     Student stu(&mysql);
