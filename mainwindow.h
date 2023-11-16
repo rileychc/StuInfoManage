@@ -48,6 +48,8 @@ class MainWindow : public QMainWindow {
 
     void on_cls__query_p_clicked();
 
+    void on_del_p_clicked();
+
   private:
     Ui::MainWindow *ui;
 };

@@ -24,7 +24,7 @@ class Student {
     string punishment_levels; // 惩罚编号
     C_mysql *my;
     Student(C_mysql *m) { my = m; }
-    void mdelete(string &aco, string &tg);
+    void mdelete(string &aco, string &tg, string &key, string &keytg);
     void insert();
     void select();
     void select(string &aco, string &tg);

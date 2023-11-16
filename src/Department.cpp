@@ -40,8 +40,9 @@ void Department::select(string &aco,
         mysql_free_result(res);
     }
 }
-void Department::mdelete(string &aco, string &tg) {
-    string ctl = "delete from department where " + aco + "=" + tg + ";";
+void Department::mdelete(string &aco, string &tg, string &key, string &keytg) {
+    string ctl = "delete from department where " + aco + "=" + tg + " and " +
+                 key + "= " + keytg + ";";
     if (my->mysql_select(ctl) == 0) {
         cout << "删除成功" << endl;
     } else {

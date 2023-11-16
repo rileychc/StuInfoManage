@@ -17,7 +17,7 @@ class Department {
     string name;
     C_mysql *my;
     Department(C_mysql *m) { my = m; }
-    void mdelete(string &aco, string &tg);
+    void mdelete(string &aco, string &tg, string &key, string &keytg);
     void insert();
     void select(string &aco, string &tg);
     void update(string &upd, string &updtg, string &aco, string &tg);

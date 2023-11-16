@@ -592,7 +592,7 @@
      <widget class="QPushButton" name="stu_query_Button">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>520</x>
         <y>460</y>
         <width>100</width>
         <height>32</height>
@@ -670,7 +670,7 @@
      <widget class="QPushButton" name="stu_clapushButton">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>350</x>
         <y>460</y>
         <width>100</width>
         <height>32</height>
@@ -678,6 +678,19 @@
       </property>
       <property name="text">
        <string>清空</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="del_p">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>460</y>
+        <width>100</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>删除</string>
       </property>
      </widget>
     </widget>

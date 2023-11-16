@@ -41,8 +41,9 @@ void Reward::select(string &aco, string &tg) { // 根据哪个字段查询,目�
         mysql_free_result(res);
     }
 }
-void Reward::mdelete(string &aco, string &tg) {
-    string ctl = "delete from reward where " + aco + "=" + tg + ";";
+void Reward::mdelete(string &aco, string &tg, string &key, string &keytg) {
+    string ctl = "delete from reward where " + aco + "=" + tg + " and " + key +
+                 "= " + keytg + ";";
     if (my->mysql_select(ctl) == 0) {
         cout << "删除成功" << endl;
     } else {
