@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include<QTableWidgetItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,33 +18,6 @@ class MainWindow : public QMainWindow {
     ~MainWindow();
 
   private slots:
-    // void on_cla_com_but_2_clicked();
-
-    // void on_cla_cle_but_2_clicked();
-
-    // void on_depa_com_but_5_clicked();
-
-    // void on_depa_cle_but_5_clicked();
-
-    // void on_per_cle_but_clicked();
-
-    // void on_per_com_but_clicked();
-
-    // //    void on_tabWidget_tabBarClicked(int index);
-
-    // void on_pushButton_clicked();
-
-    // void on_chg_com_clicked();
-
-    // void on_chg_cle_clicked();
-
-    // void on_rw_cle_clicked();
-    // void on_rw_com_clicked();
-
-    // void on_pns_cle_clicked();
-
-    // void on_pns_com_clicked();
-
     void on_cls_ar_accepted();
     void on_per_ar_accepted();
     void on_cla_ar_rejected();
@@ -56,6 +30,14 @@ class MainWindow : public QMainWindow {
     void on_rw_accepted();
     void on_pns_rejected();
     void on_pns_accepted();
+    void on_stu_query_Button_clicked();
+    void on_tabWidget_tabBarClicked(int index);
+    void on_demo_query_clicked();
+    void on_stu_clapushButton_clicked();
+    void on_rw_query_p_clicked();
+    void on_pns_query_p_clicked();
+    void on_depa_query_p_clicked();
+    void on_cls_query_p_clicked();
 
   private:
     Ui::MainWindow *ui;

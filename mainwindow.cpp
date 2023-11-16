@@ -6,11 +6,16 @@
 #include "Punishment.h"
 #include "Reward.h"
 #include "Student.h"
+#include <QString>
+#include <QStringList>
+#include <QVBoxLayout>
+#include <stdio.h>
 // #include
 // "/Users/riley/Project/build-StuInfoManage-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
 #include "chg_query.h"
 #include "cls_query.h"
 #include "depar_wd.h"
+#include"rw_query.h"
 #include "pns_query.h"
 
 extern C_mysql mysql;
@@ -71,31 +76,11 @@ void MainWindow::on_per_ar_rejected() { // 学籍变更输入
     this->ui->t_id->clear();
 }
 // void MainWindow::on_pushButton_clicked() {
-//     Student stu(&mysql);
-//     string tg = "student";
-//     auto res = mysql.select(tg);
-//     // rows/fields  行/列
-//     // printf("rows:%d\n", rows);
-//     int fields = mysql_num_fields(res);
-//     // printf("fields:%d\n", fields);
-//     // fetch
-//     MYSQL_ROW row; // 定义一行的数据
-//     int j = 0;
-//     while ((row = mysql_fetch_row(res)) != NULL) {
-//         for (int i = 0; i < fields; i++) {
-//             // printf("%s\t", row[i]);
 
-//             // ui->tableWidget->setItem(j, i, new QTableWidgetItem(row[i]));
-//         }
-//         // printf("\n");
-//         j++;
-//     }
-//     mysql_free_result(res);
 // }
 
 // void MainWindow::on_pushButton_3_clicked() {
-//     chg_query w;
-//     w.show();
+
 // }
 
 // void MainWindow::on_pushButton_4_clicked() {
@@ -173,3 +158,96 @@ void MainWindow::on_pns_accepted() {
     pns.studentid = this->ui->t_pns_stuid->text().toStdString();
     pns.insert();
 }
+
+void MainWindow::on_stu_query_Button_clicked() {
+    string tg = "student";
+    auto res = mysql.select(tg);
+    // rows/fields  行/列
+    // printf("rows:%d\n", rows);
+    int fields = mysql_num_fields(res);
+    // printf("fields:%d\n", fields);
+    // fetch
+    MYSQL_ROW row; // 定义一行的数据
+    int j = 0;
+    while ((row = mysql_fetch_row(res)) != NULL) {
+        this->ui->tableWidget->insertRow(j);
+        for (int i = 0; i < fields; i++) {
+            QTableWidgetItem *item = new QTableWidgetItem(
+                row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
+            // QTableWidgetItem *demo = new QTableWidgetItem(row[i]);
+            // printf("%s ", row[i]);
+            ui->tableWidget->setItem(j, i, item);
+        }
+        // printf("\n");
+        j++;
+    }
+    mysql_free_result(res);
+}
+
+void MainWindow::on_tabWidget_tabBarClicked(int index) {
+    int a;
+    // on_stu_query_Button_clicked();
+}
+
+void MainWindow::on_demo_query_clicked() {
+    chg_query *w = new chg_query();
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(w);
+    setLayout(layout);
+    w->show();
+}
+
+void MainWindow::on_stu_clapushButton_clicked() {
+    ui->tableWidget->clear();
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "学号"
+                                                             << "姓名"
+                                                             << "性别"
+                                                             << "班级编号"
+                                                             << "院系编号"
+                                                             << "生日"
+                                                             << "籍贯");
+}
+
+void MainWindow::on_rw_query_p_clicked()
+{
+    rw_query *w = new rw_query();
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(w);
+    setLayout(layout);
+    w->show();
+
+}
+
+
+void MainWindow::on_pns_query_p_clicked()
+{
+    pns_query *w = new pns_query();
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(w);
+    setLayout(layout);
+    w->show();
+}
+
+
+void MainWindow::on_depa_query_p_clicked()
+{
+    depar_wd *w = new depar_wd();
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(w);
+    setLayout(layout);
+    w->show();
+}
+
+
+void MainWindow::on_cls_query_p_clicked()
+{
+    cls_query *w = new cls_query();
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(w);
+    setLayout(layout);
+    w->show();
+}
+
+
+

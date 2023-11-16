@@ -41,7 +41,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     depar_wd.ui
     pns_query.cpp
     pns_query.h
-    pns_query.ui)
+    pns_query.ui
+rw_query.h
+rw_query.cpp
+rw_query.ui
+)
   # Define target properties for Android with Qt 6 as: set_property(TARGET
   # StuInfoManage APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
   # ${CMAKE_CURRENT_SOURCE_DIR}/android) For more information, see
