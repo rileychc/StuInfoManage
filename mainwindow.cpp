@@ -9,14 +9,18 @@
 #include <QString>
 #include <QStringList>
 #include <QVBoxLayout>
+#include <Qdebug>
+#include <qlogging.h>
 #include <stdio.h>
 // #include
 // "/Users/riley/Project/build-StuInfoManage-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
 #include "chg_query.h"
 #include "cls_query.h"
 #include "depar_wd.h"
-#include"rw_query.h"
 #include "pns_query.h"
+#include "rw_query.h"
+#include <string>
+using namespace std;
 
 extern C_mysql mysql;
 
@@ -160,6 +164,7 @@ void MainWindow::on_pns_accepted() {
 }
 
 void MainWindow::on_stu_query_Button_clicked() {
+    on_stu_clapushButton_clicked();
     string tg = "student";
     auto res = mysql.select(tg);
     // rows/fields  行/列
@@ -209,19 +214,15 @@ void MainWindow::on_stu_clapushButton_clicked() {
                                                              << "籍贯");
 }
 
-void MainWindow::on_rw_query_p_clicked()
-{
+void MainWindow::on_rw_query_p_clicked() {
     rw_query *w = new rw_query();
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(w);
     setLayout(layout);
     w->show();
-
 }
 
-
-void MainWindow::on_pns_query_p_clicked()
-{
+void MainWindow::on_pns_query_p_clicked() {
     pns_query *w = new pns_query();
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(w);
@@ -229,9 +230,7 @@ void MainWindow::on_pns_query_p_clicked()
     w->show();
 }
 
-
-void MainWindow::on_depa_query_p_clicked()
-{
+void MainWindow::on_depa_query_p_clicked() {
     depar_wd *w = new depar_wd();
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(w);
@@ -239,9 +238,7 @@ void MainWindow::on_depa_query_p_clicked()
     w->show();
 }
 
-
-void MainWindow::on_cls_query_p_clicked()
-{
+void MainWindow::on_cls_query_p_clicked() {
     cls_query *w = new cls_query();
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(w);
@@ -249,5 +246,45 @@ void MainWindow::on_cls_query_p_clicked()
     w->show();
 }
 
+void MainWindow::on_tableWidget_itemChanged(QTableWidgetItem *item) {
+    Student stu(&mysql);
+    int row = item->row();       // 获取行号
+    int column = item->column(); // 获取列号
+    QTableWidgetItem *stuid = ui->tableWidget->item(row, 0);
+    string tg;
+    string text = item->text().toStdString(); // 获取更新后的内容
+    switch (column) {
+    case 0:
+        tg = "studentid";
+        break;
+    case 1:
+        tg = "name";
+        text = "'" + text + "'";
+        break;
+    case 2:
+        tg = "sex";
+        text = "'" + text + "'";
+        break;
+    case 3:
+        tg = "class";
+        break;
+    case 4:
+        tg = "deparment";
+        break;
+    case 5:
+        tg = "birthday";
+        break;
+    case 6:
+        tg = "native_place";
+        text = "'" + text + "'";
+        break;
+    }
+    string uptg = "studentid";
+    string uu = stuid->text().toStdString();
 
+    stu.update(tg, text, uptg, uu);
 
+    //     qDebug()
+    // << "Item at (" << row << "," << column << ") has been changed to"
+    // << text;
+}

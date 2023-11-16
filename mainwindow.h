@@ -39,6 +39,8 @@ class MainWindow : public QMainWindow {
     void on_depa_query_p_clicked();
     void on_cls_query_p_clicked();
 
+    void on_tableWidget_itemChanged(QTableWidgetItem *item);
+
   private:
     Ui::MainWindow *ui;
 };

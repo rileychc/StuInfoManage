@@ -6,7 +6,9 @@ rw_query::rw_query(QWidget *parent) : QWidget(parent), ui(new Ui::rw_query) {
 }
 
 rw_query::~rw_query() { delete ui; }
+
 extern C_mysql mysql;
+
 void rw_query::on_tableWidget_entered(const QModelIndex &index) {
     string tg = "reward";
     auto res = mysql.select(tg);
