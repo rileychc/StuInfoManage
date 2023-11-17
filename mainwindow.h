@@ -1,8 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-// #include "./ui_mainwindow.h"
-#include "/Users/riley/Project/build-rileySQL-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
+#include "./ui_mainwindow.h"
+// #include
+// "/Users/riley/Project/build-rileySQL-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
 #include "BaseCtl.h"
 #include "Change.h"
 #include "Class.h"
@@ -36,7 +37,10 @@ class MainWindow : public QMainWindow {
     int tb_select = 0; // 0为学生表
   public:
     MainWindow(QWidget *parent = nullptr);
+    void query_slot();
     void base_query(BaseCtl *p);
+    bool single_query(BaseCtl *p, QTableWidgetItem *item);
+
     ~MainWindow();
 
   private slots:
@@ -64,8 +68,6 @@ class MainWindow : public QMainWindow {
     void on_del_p_clicked();
 
     void on_tabWidget_destroyed();
-
-    void on_update_ctl_clicked();
 
     void on_tableWidget_cellChanged(int row, int column);
 

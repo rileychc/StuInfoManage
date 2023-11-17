@@ -1,4 +1,6 @@
 #include "mainwindow.h"
+#include <string>
+using namespace std;
 
 void MainWindow::on_cls_ar_accepted() {
     C_class cls(&sqlObj);

@@ -36,6 +36,7 @@ class BaseCtl {
     MYSQL_RES *select(string &slc_dst, string &key_dst);
     bool update(string &upd, string &updtg, string &tg);
     bool mdelete(string &aco, string &tg, string &keytg);
+    void date_erase_char(string &str);
 };
 
 #endif // _SQL_H_

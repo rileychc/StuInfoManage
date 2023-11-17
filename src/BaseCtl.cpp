@@ -9,6 +9,14 @@
 #include "BaseCtl.h"
 #include <QMessageBox>
 
+void BaseCtl::date_erase_char(string &str) {
+    std::string target = "-";
+    std::string::size_type pos = 0;
+    while ((pos = str.find(target, pos)) != std::string::npos) {
+        str.erase(pos, target.length());
+    }
+}
+
 bool BaseCtl::insert() {
     if (mysql_real_query(mysql, ctl.c_str(),
                          ctl.length())) { //(返回0为成功)

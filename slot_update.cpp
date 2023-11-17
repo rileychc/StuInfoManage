@@ -1,17 +1,14 @@
 #include "mainwindow.h"
-
-void MainWindow::on_tableWidget_cellChanged(int row, int column) {
-    on_update_ctl_clicked();
+extern bool isFirstQuery;
+void MainWindow::on_tableWidget_cellChanged(int row, int column)
+    {
+    query_slot();
 }
-void MainWindow::on_update_ctl_clicked() {
-
-    int row = ui->tableWidget->currentRow();
+void MainWindow::query_slot()
+{
+   int row = ui->tableWidget->currentRow();
     int column = ui->tableWidget->currentColumn();
-
     QTableWidgetItem *pri_key = ui->tableWidget->item(row, 0);
-    if (nullptr == pri_key) {
-        return;
-    }
     string set_src;
 
     if (nullptr == pri_key || nullptr == ui->tableWidget->item(row, column)) {
@@ -64,6 +61,7 @@ void MainWindow::on_update_ctl_clicked() {
             break;
         case 5:
             set_src = "birthday";
+            stu.date_erase_char(set_dst);
             break;
         case 6:
             set_src = "native_place";
@@ -90,6 +88,8 @@ void MainWindow::on_update_ctl_clicked() {
             break;
         case 3:
             set_src = "rec_time";
+            chg.date_erase_char(set_dst);
+
             break;
         case 4:
             set_src = "description";
@@ -116,6 +116,7 @@ void MainWindow::on_update_ctl_clicked() {
             break;
         case 3:
             set_src = "rec_time";
+            rw.date_erase_char(set_dst);
             break;
         case 4:
             set_src = "description";
@@ -142,6 +143,7 @@ void MainWindow::on_update_ctl_clicked() {
             break;
         case 3:
             set_src = "rec_time";
+            pns.date_erase_char(set_dst);
             break;
         case 4:
             set_src = "enable";
