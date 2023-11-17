@@ -1,11 +1,16 @@
 #include "mainwindow.h"
 
 void MainWindow::on_tableWidget_cellChanged(int row, int column) {
-    query_slot();
+    update_slot();
 }
-void MainWindow::query_slot() {
+void MainWindow::update_slot() {
     int row = ui->tableWidget->currentRow();
     int column = ui->tableWidget->currentColumn();
+    if (column == 0) {
+        ui->statusbar->showMessage("主键单元格无法被修改!");
+
+        return;
+    }
     QTableWidgetItem *pri_key = ui->tableWidget->item(row, 0);
     string set_src;
 

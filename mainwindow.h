@@ -36,7 +36,7 @@ class MainWindow : public QMainWindow {
     int tb_select = 0; // 0为学生表
   public:
     MainWindow(QWidget *parent = nullptr);
-    void query_slot();
+    void update_slot();
     void base_query(BaseCtl *p);
     bool single_query(BaseCtl *p, QTableWidgetItem *item);
 

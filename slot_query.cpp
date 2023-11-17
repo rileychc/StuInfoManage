@@ -101,17 +101,14 @@ void MainWindow::base_query(BaseCtl *p) { // 父类指针指向子类对象，�
         break;
     }
 
-
-
     default: {
         ui->tableWidget->setColumnCount(fields);
         while ((row = mysql_fetch_row(res)) != NULL) {
-             this->ui->tableWidget->insertRow(j);
+            this->ui->tableWidget->insertRow(j);
             for (int i = 0; i < fields; i++) {
                 QTableWidgetItem *item = new QTableWidgetItem(
                     row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
                 item->setTextAlignment(Qt::AlignCenter);
-                cout<<item->text().toStdString()<<" ";
                 ui->tableWidget->setItem(j, i, item);
             }
             j++;
