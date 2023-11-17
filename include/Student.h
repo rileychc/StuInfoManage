@@ -20,7 +20,10 @@ class Student : public BaseCtl {
     string change_code;       // 学籍变动编号
     string reward_levels;     // 奖励编号
     string punishment_levels; // 惩罚编号
-    Student(MYSQL *sql) : BaseCtl(sql) { tb_name = "student"; }
+    Student(MYSQL *sql) : BaseCtl(sql) {
+        tb_name = "student";
+        pri_key = "studentid";
+    }
     bool insert();
 };
 

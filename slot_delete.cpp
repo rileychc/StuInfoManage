@@ -39,9 +39,8 @@ void MainWindow::on_del_p_clicked() {
             set_dst = "'" + set_dst + "'";
             break;
         }
-        string whe_src = "studentid";
         string whe_dst = pri_key->text().toStdString();
-        stu.mdelete(set_src, set_dst, whe_src,
+        stu.mdelete(set_src, set_dst,
                     whe_dst); // update [table] set tg=text where uptg=uu;
         on_stu_query_Button_clicked();
         break;
@@ -66,9 +65,8 @@ void MainWindow::on_del_p_clicked() {
             set_dst = "'" + set_dst + "'";
             break;
         }
-        string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();
-        chg.mdelete(set_src, set_dst, whe_src,
+        chg.mdelete(set_src, set_dst,
                     whe_dst); // mdelete [table] set tg=text where uptg=uu;
         on_chg_query_p_clicked();
         break;
@@ -93,9 +91,8 @@ void MainWindow::on_del_p_clicked() {
             set_dst = "'" + set_dst + "'";
             break;
         }
-        string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();
-        rw.mdelete(set_src, set_dst, whe_src,
+        rw.mdelete(set_src, set_dst,
                    whe_dst); // mdelete [table] set tg=text where uptg=uu;
         on_rw_query_p_clicked();
         break;
@@ -124,9 +121,8 @@ void MainWindow::on_del_p_clicked() {
             set_dst = "'" + set_dst + "'";
             break;
         }
-        string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();
-        pns.mdelete(set_src, set_dst, whe_src,
+        pns.mdelete(set_src, set_dst,
                     whe_dst); // mdelete [table] set tg=text where uptg=uu;
         on_pns__query_p_clicked();
         break;
@@ -142,9 +138,8 @@ void MainWindow::on_del_p_clicked() {
             set_dst = "'" + set_dst + "'";
             break;
         }
-        string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();
-        depa.mdelete(set_src, set_dst, whe_src,
+        depa.mdelete(set_src, set_dst,
                      whe_dst); // mdelete [table] set tg=text where uptg=uu;
         on_depa__query_p_clicked();
         break;
@@ -163,9 +158,8 @@ void MainWindow::on_del_p_clicked() {
             set_src = "monitor";
             break;
         }
-        string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();
-        cls.mdelete(set_src, set_dst, whe_src,
+        cls.mdelete(set_src, set_dst,
                     whe_dst); // mdelete [table] set tg=text where uptg=uu;
         on_cls__query_p_clicked();
         break;

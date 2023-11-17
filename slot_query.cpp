@@ -24,8 +24,10 @@ void MainWindow::base_query(BaseCtl *p) { // 父类指针指向子类对象，�
                     else if ("M" == item->text().toStdString())
                         item->setText("男");
                 } else if (3 == i) {
-                    auto sele = p->select(item->text().toStdString(), "id",
-                                          item->text().toStdString());
+                    string key = "id";
+                    string a = item->text().toStdString();
+                    string b = item->text().toStdString();
+                    auto sele = p->select(a, key, b);
                 }
                 // item->setTextAlignment();
                 ui->tableWidget->setItem(j, i, item);

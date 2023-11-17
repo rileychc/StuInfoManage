@@ -26,16 +26,16 @@ class BaseCtl {
   public:
     MYSQL *mysql;
     string id;
-    string tb_name;
     string ctl;
+    string tb_name;
+    string pri_key = "id";
     BaseCtl(MYSQL *sql) : mysql(sql) {}
     ~BaseCtl() {}
     bool insert();
     MYSQL_RES *select();
-    MYSQL_RES *select(string &tbl, string &slc_dst, string &key_src,
-                      string &key_dst);
-    bool update(string &upd, string &updtg, string &aco, string &tg);
-    bool mdelete(string &aco, string &tg, string &key, string &keytg);
+    MYSQL_RES *select(string &slc_dst, string &key_dst);
+    bool update(string &upd, string &updtg, string &tg);
+    bool mdelete(string &aco, string &tg, string &keytg);
 };
 
 #endif // _SQL_H_

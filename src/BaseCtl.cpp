@@ -20,9 +20,8 @@ bool BaseCtl::insert() {
     return true;
 }
 
-MYSQL_RES *BaseCtl::select(string &tbl, string &slc_dst, string &key_src,
-                           string &key_dst) {
-    ctl = "select " + slc_dst + " from " + tb_name + " where " + key_src +
+MYSQL_RES *BaseCtl::select(string &slc_dst, string &key_dst) {
+    ctl = "select " + slc_dst + " from " + tb_name + " where " + pri_key +
           " = " + key_dst + ";";
     cout << "执行的操作是" << ctl << endl;
 
@@ -55,10 +54,10 @@ MYSQL_RES *BaseCtl::select() {
     return res;
 }
 
-bool BaseCtl::update(string &upd, string &updtg, string &aco, string &tg) {
+bool BaseCtl::update(string &upd, string &updtg, string &tg) {
 
-    ctl = "update " + tb_name + " set " + upd + "=" + updtg + "  where " + aco +
-          "=" + tg + ";";
+    ctl = "update " + tb_name + " set " + upd + "=" + updtg + "  where " +
+          pri_key + "=" + tg + ";";
     cout << "执行的操作是" << ctl << endl;
 
     if (0 == mysql_real_query(mysql, ctl.c_str(), ctl.length())) {
@@ -68,10 +67,10 @@ bool BaseCtl::update(string &upd, string &updtg, string &aco, string &tg) {
     return true;
 }
 
-bool BaseCtl::mdelete(string &aco, string &tg, string &key, string &keytg) {
+bool BaseCtl::mdelete(string &aco, string &tg, string &keytg) {
 
     ctl = "delete from " + tb_name + "  where " + aco + "=" + tg + " and " +
-          key + "= " + keytg + ";";
+          pri_key + "= " + keytg + ";";
 
     cout << "执行的操作是" << ctl << endl;
     if (0 == mysql_real_query(mysql, ctl.c_str(), ctl.length())) {
