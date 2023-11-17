@@ -1,9 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "./ui_mainwindow.h"
-// #include
-// "/Users/riley/Project/build-rileySQL-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
+ #include "./ui_mainwindow.h"
+//#include "/Users/riley/Project/build-rileySQL-Desktop-Debug/StuInfoManage_autogen/include/ui_mainwindow.h"
 #include "BaseCtl.h"
 #include "Change.h"
 #include "Class.h"

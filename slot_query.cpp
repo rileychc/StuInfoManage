@@ -1,21 +1,21 @@
 #include "mainwindow.h"
 #include <Department.h>
+#include <string>
+using namespace std;
 
-bool MainWindow::single_query(BaseCtl *p, QTableWidgetItem *item) {
+bool MainWindow::single_query(BaseCtl *p, QTableWidgetItem *it) {
     string seleTg = "name"; // 默认为查询name
-    string key_vlu = item->text().toStdString();
-    cout << key_vlu << endl;
+    string key_vlu = it->text().toStdString();
     auto sg_res = mysql_fetch_row(p->select(seleTg, key_vlu)); // 查询到的结果
-    item->setText(sg_res[0] ? QString::fromUtf8(sg_res[0]) : QString("NULL"));
+    it->setText(QString::fromStdString(sg_res[0]));
     return true;
 }
-bool isFirstQuery=true;
 void MainWindow::base_query(BaseCtl *p) { // 父类指针指向子类对象，多态性
     ui->tableWidget->setRowCount(0);
     auto res = p->select(); // 获取查询结果集
-    if (nullptr == res) {
+    if (nullptr == res)
         ui->statusbar->showMessage("查询失败!", 2000);
-    }
+
     int fields = mysql_num_fields(res);
     // fetch
     MYSQL_ROW row; // 定义一行的数据
@@ -53,70 +53,65 @@ void MainWindow::base_query(BaseCtl *p) { // 父类指针指向子类对象，�
         while ((row = mysql_fetch_row(res)) != NULL) {
             this->ui->tableWidget->insertRow(j);
             for (i = 0; i < fields; i++) {
-                QTableWidgetItem *item = new QTableWidgetItem(
-                    row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
+                QTableWidgetItem *item =
+                    new QTableWidgetItem(QString::fromUtf8(row[i]));
                 if (4 == i && "F" == item->text().toStdString())
                     item->setText("否");
                 else if (4 == i && "T" == item->text().toStdString())
                     item->setText("是");
                 else if (2 == i) {
-                    code = item->text().toStdString();
+                    last_item = new QTableWidgetItem(item->text());
                 }
                 item->setTextAlignment(Qt::AlignCenter);
                 ui->tableWidget->setItem(j, i, item);
             }
+            BaseCtl *addLast = new BaseCtl(&sqlObj);
+            addLast->tb_name = "punish_levels"; // 选择代码表
+            single_query(addLast, last_item);
+            last_item->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget->setItem(j, i, last_item);
             j++;
         }
-
-        if (code == "")
-            break;
-
-         last_item = new QTableWidgetItem(QString::fromStdString(code));
-         BaseCtl *addLast = new BaseCtl(&sqlObj);
-         addLast->tb_name = "punish_levels"; // 选择代码表
-         single_query(addLast, last_item);
-         last_item->setTextAlignment(Qt::AlignCenter);
-         ui->tableWidget->setItem(j, i, last_item);
         break;
     }
     case 1:
     case 2: {
-        int i;
-        string code = "";
         QTableWidgetItem *last_item;
         ui->tableWidget->setColumnCount(fields + 1);
         while ((row = mysql_fetch_row(res)) != NULL) {
+            int i;
             this->ui->tableWidget->insertRow(j);
             for (i = 0; i < fields; i++) {
                 QTableWidgetItem *item = new QTableWidgetItem(
                     row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
                 if (2 == i) {
-                    code = item->text().toStdString();
+                    last_item = new QTableWidgetItem(item->text());
                 }
                 item->setTextAlignment(Qt::AlignCenter);
                 ui->tableWidget->setItem(j, i, item);
             }
+            BaseCtl *addLast = new BaseCtl(&sqlObj);
+            addLast->tb_name = (1 == tb_select) ? "change_code"
+                                                : "reward_levels"; // 选择代码表
+            single_query(addLast, last_item);
+            last_item->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget->setItem(j, i, last_item);
             j++;
         }
-        if (code == "")
-            break;
-         last_item = new QTableWidgetItem(QString::fromStdString(code));
-         BaseCtl *addLast = new BaseCtl(&sqlObj);
-         addLast->tb_name =
-             (1 == tb_select) ? "change_code" : "reward_levels"; // 选择代码表
-         single_query(addLast, last_item);
-         last_item->setTextAlignment(Qt::AlignCenter);
-         ui->tableWidget->setItem(j, i, last_item);
         break;
     }
+
+
+
     default: {
         ui->tableWidget->setColumnCount(fields);
         while ((row = mysql_fetch_row(res)) != NULL) {
-            this->ui->tableWidget->insertRow(j);
+             this->ui->tableWidget->insertRow(j);
             for (int i = 0; i < fields; i++) {
                 QTableWidgetItem *item = new QTableWidgetItem(
                     row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
                 item->setTextAlignment(Qt::AlignCenter);
+                cout<<item->text().toStdString()<<" ";
                 ui->tableWidget->setItem(j, i, item);
             }
             j++;
@@ -124,7 +119,7 @@ void MainWindow::base_query(BaseCtl *p) { // 父类指针指向子类对象，�
         break;
     }
     }
-    if(isFirstQuery)isFirstQuery=false;
+
     mysql_free_result(res);
 }
 

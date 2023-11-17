@@ -1,12 +1,10 @@
 #include "mainwindow.h"
-extern bool isFirstQuery;
-void MainWindow::on_tableWidget_cellChanged(int row, int column)
-    {
+
+void MainWindow::on_tableWidget_cellChanged(int row, int column) {
     query_slot();
 }
-void MainWindow::query_slot()
-{
-   int row = ui->tableWidget->currentRow();
+void MainWindow::query_slot() {
+    int row = ui->tableWidget->currentRow();
     int column = ui->tableWidget->currentColumn();
     QTableWidgetItem *pri_key = ui->tableWidget->item(row, 0);
     string set_src;
