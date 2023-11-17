@@ -14,7 +14,7 @@ class Department : public BaseCtl {
   public:
     string name;
     Department(MYSQL *sql) : BaseCtl(sql) { tb_name = "department"; }
-    void insert();
+    bool insert();
 };
 
 #endif // _DEPARTMENT_H_

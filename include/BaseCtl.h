@@ -27,17 +27,15 @@ class BaseCtl {
     MYSQL *mysql;
     string id;
     string tb_name;
+    string ctl;
     BaseCtl(MYSQL *sql) : mysql(sql) {}
     ~BaseCtl() {}
-    // int connect();
-    int insert(string &ctl);
-    // int mysql_update(string &ctl);
-    // int mysql_delete(string &ctl);
-    // MYSQL_RES *mysql_select(string &ctl);
-    MYSQL_RES *select(string &tbl);
-    void update(string &upd, string &updtg, string &aco, string &tg);
-    void mdelete(string &aco, string &tg, string &key, string &keytg);
-    void select(string &aco, string &tg);
+    bool insert();
+    MYSQL_RES *select();
+    MYSQL_RES *select(string &tbl, string &slc_dst, string &key_src,
+                      string &key_dst);
+    bool update(string &upd, string &updtg, string &aco, string &tg);
+    bool mdelete(string &aco, string &tg, string &key, string &keytg);
 };
 
 #endif // _SQL_H_

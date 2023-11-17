@@ -19,22 +19,22 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>791</width>
-      <height>531</height>
+      <width>801</width>
+      <height>551</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
-      <string>信息录入</string>
+      <string>整体信息</string>
      </attribute>
      <widget class="QWidget" name="formLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>50</y>
+        <x>130</x>
+        <y>40</y>
         <width>271</width>
         <height>95</height>
        </rect>
@@ -59,7 +59,7 @@
        <item row="2" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>班级名</string>
+          <string>班  级  名</string>
          </property>
         </widget>
        </item>
@@ -75,8 +75,8 @@
      <widget class="QWidget" name="formLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>50</y>
+        <x>430</x>
+        <y>60</y>
         <width>271</width>
         <height>64</height>
        </rect>
@@ -95,7 +95,7 @@
        <item row="2" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>学院名</string>
+          <string>学  院  名</string>
          </property>
         </widget>
        </item>
@@ -107,8 +107,8 @@
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>200</y>
+        <x>130</x>
+        <y>230</y>
         <width>581</width>
         <height>221</height>
        </rect>
@@ -127,7 +127,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_6">
          <property name="text">
-          <string>姓名</string>
+          <string>姓       名</string>
          </property>
         </widget>
        </item>
@@ -182,21 +182,21 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_10">
          <property name="text">
-          <string>班级</string>
+          <string>班级编号</string>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_11">
          <property name="text">
-          <string>学院</string>
+          <string>学院编号</string>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
         <widget class="QLabel" name="label_12">
          <property name="text">
-          <string>籍贯</string>
+          <string>籍       贯</string>
          </property>
         </widget>
        </item>
@@ -205,8 +205,8 @@
      <widget class="QDialogButtonBox" name="cls_ar">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>150</y>
+        <x>170</x>
+        <y>140</y>
         <width>152</width>
         <height>32</height>
        </rect>
@@ -218,8 +218,8 @@
      <widget class="QDialogButtonBox" name="depa_ar">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>130</y>
+        <x>480</x>
+        <y>140</y>
         <width>152</width>
         <height>32</height>
        </rect>
@@ -231,8 +231,8 @@
      <widget class="QDialogButtonBox" name="per_ar">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>430</y>
+        <x>340</x>
+        <y>470</y>
         <width>152</width>
         <height>32</height>
        </rect>
@@ -241,16 +241,64 @@
        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
       </property>
      </widget>
+     <widget class="QLabel" name="label_29">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>0</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>班级信息录入</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_30">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>20</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>学院信息录入</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_31">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>180</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>个人信息录入</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
-      <string>学籍变更情况录入</string>
+      <string>学籍变更情况</string>
      </attribute>
      <widget class="QWidget" name="gridLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>50</y>
+        <x>120</x>
+        <y>120</y>
         <width>581</width>
         <height>221</height>
        </rect>
@@ -269,7 +317,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_14">
          <property name="text">
-          <string>记录号</string>
+          <string>记  录  号</string>
          </property>
         </widget>
        </item>
@@ -288,14 +336,14 @@
        <item row="2" column="0">
         <widget class="QLabel" name="label_18">
          <property name="text">
-          <string>描述</string>
+          <string>描       述</string>
          </property>
         </widget>
        </item>
        <item row="0" column="3">
         <widget class="QLabel" name="label_13">
          <property name="text">
-          <string>学号</string>
+          <string>学       号</string>
          </property>
         </widget>
        </item>
@@ -327,8 +375,8 @@
      <widget class="QDialogButtonBox" name="chg">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>280</y>
+        <x>320</x>
+        <y>350</y>
         <width>152</width>
         <height>32</height>
        </rect>
@@ -337,16 +385,32 @@
        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
       </property>
      </widget>
+     <widget class="QLabel" name="label_32">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>60</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>学籍变更信息录入</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
-      <string>奖励情况录入</string>
+      <string>奖励情况</string>
      </attribute>
      <widget class="QWidget" name="gridLayoutWidget_3">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>80</y>
+        <x>120</x>
+        <y>130</y>
         <width>581</width>
         <height>221</height>
        </rect>
@@ -365,7 +429,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_16">
          <property name="text">
-          <string>记录号</string>
+          <string>记  录  号</string>
          </property>
         </widget>
        </item>
@@ -384,14 +448,14 @@
        <item row="2" column="0">
         <widget class="QLabel" name="label_20">
          <property name="text">
-          <string>描述</string>
+          <string>描       述</string>
          </property>
         </widget>
        </item>
        <item row="0" column="3">
         <widget class="QLabel" name="label_21">
          <property name="text">
-          <string>学号</string>
+          <string>学       号</string>
          </property>
         </widget>
        </item>
@@ -423,8 +487,8 @@
      <widget class="QDialogButtonBox" name="rw">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>310</y>
+        <x>310</x>
+        <y>360</y>
         <width>152</width>
         <height>32</height>
        </rect>
@@ -433,16 +497,32 @@
        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
       </property>
      </widget>
+     <widget class="QLabel" name="label_33">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>70</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>奖励情况</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
-      <string>处罚情况录入</string>
+      <string>处罚情况</string>
      </attribute>
      <widget class="QWidget" name="gridLayoutWidget_4">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>70</y>
+        <x>110</x>
+        <y>110</y>
         <width>581</width>
         <height>221</height>
        </rect>
@@ -461,7 +541,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_24">
          <property name="text">
-          <string>记录号</string>
+          <string>记  录  号</string>
          </property>
         </widget>
        </item>
@@ -487,7 +567,7 @@
        <item row="0" column="3">
         <widget class="QLabel" name="label_26">
          <property name="text">
-          <string>学号</string>
+          <string>学      号</string>
          </property>
         </widget>
        </item>
@@ -520,7 +600,7 @@
        <item row="2" column="3">
         <widget class="QLabel" name="label_28">
          <property name="text">
-          <string>描述</string>
+          <string>描      述</string>
          </property>
         </widget>
        </item>
@@ -529,14 +609,30 @@
      <widget class="QDialogButtonBox" name="pns">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>310</y>
+        <x>320</x>
+        <y>350</y>
         <width>152</width>
         <height>32</height>
        </rect>
       </property>
       <property name="standardButtons">
        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_34">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>60</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>处罚情况录入</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -592,20 +688,20 @@
      <widget class="QPushButton" name="stu_query_Button">
       <property name="geometry">
        <rect>
-        <x>520</x>
-        <y>460</y>
+        <x>40</x>
+        <y>10</y>
         <width>100</width>
         <height>32</height>
        </rect>
       </property>
       <property name="text">
-       <string>查询</string>
+       <string>个人信息查询</string>
       </property>
      </widget>
      <widget class="QPushButton" name="chg_query_p">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>160</x>
         <y>10</y>
         <width>100</width>
         <height>32</height>
@@ -618,7 +714,7 @@
      <widget class="QPushButton" name="rw_query_p">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>280</x>
         <y>10</y>
         <width>100</width>
         <height>32</height>
@@ -631,7 +727,7 @@
      <widget class="QPushButton" name="pns__query_p">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>400</x>
         <y>10</y>
         <width>100</width>
         <height>32</height>
@@ -644,7 +740,7 @@
      <widget class="QPushButton" name="depa__query_p">
       <property name="geometry">
        <rect>
-        <x>430</x>
+        <x>520</x>
         <y>10</y>
         <width>100</width>
         <height>32</height>
@@ -657,7 +753,7 @@
      <widget class="QPushButton" name="cls__query_p">
       <property name="geometry">
        <rect>
-        <x>550</x>
+        <x>640</x>
         <y>10</y>
         <width>100</width>
         <height>32</height>
@@ -670,8 +766,8 @@
      <widget class="QPushButton" name="stu_clapushButton">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>460</y>
+        <x>320</x>
+        <y>470</y>
         <width>100</width>
         <height>32</height>
        </rect>
@@ -683,14 +779,27 @@
      <widget class="QPushButton" name="del_p">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>460</y>
+        <x>190</x>
+        <y>470</y>
         <width>100</width>
         <height>32</height>
        </rect>
       </property>
       <property name="text">
        <string>删除</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="update_ctl">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>470</y>
+        <width>100</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>更新</string>
       </property>
      </widget>
     </widget>
@@ -702,7 +811,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>36</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

@@ -1,5 +1,5 @@
+#include "BaseCtl.h"
 #include "mainwindow.h"
-#include "sql.h"
 #include <QApplication>
 
 MYSQL sqlObj;
@@ -20,13 +20,18 @@ int connect() {
     }
     return 0;
 }
+
 int main(int argc, char *argv[]) {
     if (connect() != 0) {
         cout << "数据库连接失败" << endl;
         return -1;
     };
+//创建消息框
     QApplication a(argc, argv);
     MainWindow w;
+
+
+        w.setWindowTitle("学生信息管理系统");
     w.show();
     return a.exec();
 }

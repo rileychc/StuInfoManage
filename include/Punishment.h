@@ -18,7 +18,7 @@ class Punishment : public BaseCtl {
     string description;
     string enable;
     Punishment(MYSQL *sql) : BaseCtl(sql) { tb_name = "punishment"; }
-    void insert();
+    bool insert();
 };
 
 #endif // _PUNISHMENT_H_

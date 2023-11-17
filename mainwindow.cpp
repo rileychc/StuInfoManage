@@ -19,3 +19,11 @@ void MainWindow::on_stu_clapushButton_clicked() {
 }
 
 void MainWindow::on_tabWidget_destroyed() { mysql_close(&sqlObj); }
+
+
+
+
+
+
+
+

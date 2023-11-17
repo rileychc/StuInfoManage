@@ -1,22 +1,68 @@
 #include "mainwindow.h"
 
-void MainWindow::base_query(BaseCtl *p) {
+void MainWindow::base_query(BaseCtl *p) { // 父类指针指向子类对象，多态性
     ui->tableWidget->setRowCount(0);
     auto res = p->select(p->tb_name); // 获取查询结果集
+    if (nullptr == res) {
+        ui->statusbar->showMessage("查询失败!", 2000);
+    }
     int fields = mysql_num_fields(res);
     ui->tableWidget->setColumnCount(fields);
     // fetch
     MYSQL_ROW row; // 定义一行的数据
     int j = 0;
-    while ((row = mysql_fetch_row(res)) != NULL) {
-        this->ui->tableWidget->insertRow(j);
-        for (int i = 0; i < fields; i++) {
-            QTableWidgetItem *item = new QTableWidgetItem(
-                row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
-            ui->tableWidget->setItem(j, i, item);
+    switch (tb_select) {
+    case 0:
+        while ((row = mysql_fetch_row(res)) != NULL) {
+            this->ui->tableWidget->insertRow(j);
+            for (int i = 0; i < fields; i++) {
+                QTableWidgetItem *item = new QTableWidgetItem(
+                    row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
+                if (2 == i) {
+                    if ("F" == item->text().toStdString())
+                        item->setText("女");
+                    else if ("M" == item->text().toStdString())
+                        item->setText("男");
+                } else if (3 == i) {
+                    auto sele = p->select(item->text().toStdString(), "id",
+                                          item->text().toStdString());
+                }
+                // item->setTextAlignment();
+                ui->tableWidget->setItem(j, i, item);
+            }
+            j++;
         }
-        j++;
+
+        break;
+    case 3:
+        while ((row = mysql_fetch_row(res)) != NULL) {
+            this->ui->tableWidget->insertRow(j);
+            for (int i = 0; i < fields; i++) {
+                QTableWidgetItem *item = new QTableWidgetItem(
+                    row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
+                if (4 == i && "F" == item->text().toStdString())
+                    item->setText("否");
+                else if (4 == i && "T" == item->text().toStdString())
+                    item->setText("是");
+                ui->tableWidget->setItem(j, i, item);
+            }
+            j++;
+        }
+
+        break;
+    default:
+        while ((row = mysql_fetch_row(res)) != NULL) {
+            this->ui->tableWidget->insertRow(j);
+            for (int i = 0; i < fields; i++) {
+                QTableWidgetItem *item = new QTableWidgetItem(
+                    row[i] ? QString::fromUtf8(row[i]) : QString("NULL"));
+                ui->tableWidget->setItem(j, i, item);
+            }
+            j++;
+        }
+        break;
     }
+
     mysql_free_result(res);
 }
 

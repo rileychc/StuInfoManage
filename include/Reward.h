@@ -16,6 +16,6 @@ class Reward : public BaseCtl {
     string rec_time;
     string description;
     Reward(MYSQL *sql) : BaseCtl(sql) { tb_name = "reward"; }
-    void insert();
+    bool insert();
 };
 #endif // _REWARD_H_

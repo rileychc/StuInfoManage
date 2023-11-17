@@ -17,7 +17,7 @@ class Change : public BaseCtl {
     string rec_time;
     string description;
     Change(MYSQL *sql) : BaseCtl(sql) { tb_name = "`change`"; }
-    void insert();
+    bool insert();
 };
 
 #endif // _CHANGE_H_

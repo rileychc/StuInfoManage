@@ -159,6 +159,9 @@ void MainWindow::on_del_p_clicked() {
             set_src = "name";
             set_dst = "'" + set_dst + "'";
             break;
+        case 2:
+            set_src = "monitor";
+            break;
         }
         string whe_src = "id";
         string whe_dst = pri_key->text().toStdString();

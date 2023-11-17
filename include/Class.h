@@ -16,6 +16,6 @@ class C_class : public BaseCtl {
     string monitor;
 
     C_class(MYSQL *sql) : BaseCtl(sql) { tb_name = "class"; }
-    void insert();
+    bool insert();
 };
 #endif // _CLASS_H_

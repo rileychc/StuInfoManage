@@ -21,7 +21,7 @@ class Student : public BaseCtl {
     string reward_levels;     // 奖励编号
     string punishment_levels; // 惩罚编号
     Student(MYSQL *sql) : BaseCtl(sql) { tb_name = "student"; }
-    void insert();
+    bool insert();
 };
 
 #endif // _STUDENT_H_
