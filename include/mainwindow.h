@@ -1,7 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "./ui_mainwindow.h"
 #include "BaseCtl.h"
 #include "Change.h"
 #include "Class.h"
@@ -9,13 +8,13 @@
 #include "Punishment.h"
 #include "Reward.h"
 #include "Student.h"
+#include "ui_mainwindow.h"
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QString>
 #include <QStringList>
 #include <QTableWidgetItem>
 #include <QVBoxLayout>
-#include <Qdebug>
 #include <qlogging.h>
 #include <stdio.h>
 #include <string>
@@ -33,13 +32,13 @@ QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
-    int tb_select = 0; // 0为学生表
+    int tb_select = 0;   // 0为学生表
   public:
-    MainWindow(QWidget *parent = nullptr);
-    void update_slot(); // 更新操作,防止cellchanged信号一直被调用
-    void base_query(BaseCtl *p); // 由查询摁钮信号调用的查询操作
-    string single_query(string seleTg, BaseCtl *p, QTableWidgetItem *item,
-                        bool b = true); // 当仅需要查询一个目标结果时
+    MainWindow(QWidget* parent = nullptr);
+    void update_slot();   // 更新操作,防止cellchanged信号一直被调用
+    void base_query(BaseCtl* p);   // 由查询摁钮信号调用的查询操作
+    string single_query(string seleTg, BaseCtl* p, QTableWidgetItem* item,
+                        bool b = true);   // 当仅需要查询一个目标结果时
 
     ~MainWindow();
 
@@ -66,14 +65,14 @@ class MainWindow : public QMainWindow {
     void on_depa__query_p_clicked();
     void on_cls__query_p_clicked();
 
-    void on_del_p_clicked(); // 对数据库进行删除操作
+    void on_del_p_clicked();   // 对数据库进行删除操作
 
-    void on_MainWindow_destroyed(QObject *arg1); // 窗口关闭时断开mysql链接
+    void on_MainWindow_destroyed(QObject* arg1);   // 窗口关闭时断开mysql链接
     void on_tableWidget_cellChanged(
-        int row, int column); // 当单元格的数据被修改，则同步更新数据库
+        int row, int column);   // 当单元格的数据被修改，则同步更新数据库
 
   private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
 };
 
-#endif // MAINWINDOW_H
+#endif   // MAINWINDOW_H

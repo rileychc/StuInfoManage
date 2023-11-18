@@ -11,12 +11,13 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS on)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE Debug)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 aux_source_directory(./include myHeader)
-#aux_source_directory(./src DIR_SRCS)
+# aux_source_directory(./src DIR_SRCS)
 include_directories(./include /opt/homebrew/opt/mysql-client/include/mysql)
 set(myLIBRARY_PATH /opt/homebrew/opt/mysql-client/lib/)
 find_library(mylib mysqlclient ${myLIBRARY_PATH})
@@ -43,7 +44,7 @@ set(PROJECT_SOURCES
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
   qt_add_executable(StuInfoManage MANUAL_FINALIZATION ${PROJECT_SOURCES}
-                    ${DIR_SRCS})
+  )
   # Define target properties for Android with Qt 6 as: set_property(TARGET
   # StuInfoManage APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
   # ${CMAKE_CURRENT_SOURCE_DIR}/android) For more information, see
