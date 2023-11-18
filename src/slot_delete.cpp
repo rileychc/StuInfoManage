@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include <Department.h>
 
 void MainWindow::on_del_p_clicked() {
     QTableWidgetItem *item = ui->tableWidget->currentItem();
@@ -13,7 +14,7 @@ void MainWindow::on_del_p_clicked() {
     switch (tb_select) {
     case 0: {
         Student stu(&sqlObj);
-        switch (column) {
+        switch (column) { // 通过列号判断需要更新的目标字段
         case 0:
             set_src = "studentid";
             break;
@@ -26,12 +27,19 @@ void MainWindow::on_del_p_clicked() {
             set_dst = "'" + set_dst + "'";
             break;
         case 3:
+            set_dst = single_query(string("id"), new C_class(&sqlObj),
+                                   (ui->tableWidget->item(row, column)), false);
+
             set_src = "class";
             break;
         case 4:
-            set_src = "deparment";
+            set_dst = single_query(string("id"), new Department(&sqlObj),
+                                   (ui->tableWidget->item(row, column)), false);
+
+            set_src = "department";
             break;
         case 5:
+            stu.date_erase_char(set_dst);
             set_src = "birthday";
             break;
         case 6:
@@ -41,8 +49,9 @@ void MainWindow::on_del_p_clicked() {
         }
         string whe_dst = pri_key->text().toStdString();
         stu.mdelete(set_src, set_dst,
-                    whe_dst); // update [table] set tg=text where uptg=uu;
-        on_stu_query_Button_clicked();
+                    whe_dst); // delete [table]  where pri_key=whe_dst and
+                              // set_src=set_dst;
+        on_stu_query_Button_clicked(); // 删除之后进行表格更新操作
         break;
     }
     case 1: {
@@ -58,6 +67,7 @@ void MainWindow::on_del_p_clicked() {
             set_src = "`change`";
             break;
         case 3:
+            chg.date_erase_char(set_dst);
             set_src = "rec_time";
             break;
         case 4:
@@ -66,8 +76,7 @@ void MainWindow::on_del_p_clicked() {
             break;
         }
         string whe_dst = pri_key->text().toStdString();
-        chg.mdelete(set_src, set_dst,
-                    whe_dst); // mdelete [table] set tg=text where uptg=uu;
+        chg.mdelete(set_src, set_dst, whe_dst);
         on_chg_query_p_clicked();
         break;
     }
@@ -84,6 +93,7 @@ void MainWindow::on_del_p_clicked() {
             set_src = "levels";
             break;
         case 3:
+            rw.date_erase_char(set_dst);
             set_src = "rec_time";
             break;
         case 4:
@@ -92,8 +102,7 @@ void MainWindow::on_del_p_clicked() {
             break;
         }
         string whe_dst = pri_key->text().toStdString();
-        rw.mdelete(set_src, set_dst,
-                   whe_dst); // mdelete [table] set tg=text where uptg=uu;
+        rw.mdelete(set_src, set_dst, whe_dst);
         on_rw_query_p_clicked();
         break;
     }
@@ -110,6 +119,8 @@ void MainWindow::on_del_p_clicked() {
             set_src = "levels";
             break;
         case 3:
+            pns.date_erase_char(set_dst);
+
             set_src = "rec_time";
             break;
         case 4:
@@ -122,8 +133,7 @@ void MainWindow::on_del_p_clicked() {
             break;
         }
         string whe_dst = pri_key->text().toStdString();
-        pns.mdelete(set_src, set_dst,
-                    whe_dst); // mdelete [table] set tg=text where uptg=uu;
+        pns.mdelete(set_src, set_dst, whe_dst);
         on_pns__query_p_clicked();
         break;
     }
@@ -139,8 +149,7 @@ void MainWindow::on_del_p_clicked() {
             break;
         }
         string whe_dst = pri_key->text().toStdString();
-        depa.mdelete(set_src, set_dst,
-                     whe_dst); // mdelete [table] set tg=text where uptg=uu;
+        depa.mdelete(set_src, set_dst, whe_dst);
         on_depa__query_p_clicked();
         break;
     }
@@ -159,8 +168,7 @@ void MainWindow::on_del_p_clicked() {
             break;
         }
         string whe_dst = pri_key->text().toStdString();
-        cls.mdelete(set_src, set_dst,
-                    whe_dst); // mdelete [table] set tg=text where uptg=uu;
+        cls.mdelete(set_src, set_dst, whe_dst);
         on_cls__query_p_clicked();
         break;
     }

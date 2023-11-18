@@ -28,9 +28,13 @@ bool BaseCtl::insert() {
     return true;
 }
 
-MYSQL_RES *BaseCtl::select(string &slc_dst, string &key_dst) {
-    ctl = "select " + slc_dst + " from " + tb_name + " where " + pri_key +
-          " = " + key_dst + ";";
+MYSQL_RES *BaseCtl::select(string &slc_dst, string &key_dst, bool b = true) {
+    if (b)
+        ctl = "select " + slc_dst + " from " + tb_name + " where " + pri_key +
+              " = " + key_dst + ";";
+    else
+        ctl = "select " + slc_dst + " from " + tb_name + " where " + "name" +
+              " = '" + key_dst + "';";
     cout << "执行的操作是" << ctl << endl;
 
     if (mysql_real_query(mysql, ctl.c_str(), ctl.length())) {

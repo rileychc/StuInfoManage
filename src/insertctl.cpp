@@ -10,7 +10,7 @@ bool C_class::insert() {
         "insert into class values (" + id + ",'" + name + "'," + monitor + ");";
 
     cout << "ctl为:" << ctl << endl;
-    return BaseCtl::insert();
+    return BaseCtl::insert(); // 调用父类insert个性化
 }
 
 bool Change::insert() {

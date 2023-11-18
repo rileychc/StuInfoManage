@@ -11,4 +11,6 @@ void MainWindow::on_stu_clapushButton_clicked() {
     ui->tableWidget->setRowCount(0);
 }
 
-void MainWindow::on_tabWidget_destroyed() { mysql_close(&sqlObj); }
+void MainWindow::on_MainWindow_destroyed(QObject *arg1) {
+    mysql_close(&sqlObj);
+}

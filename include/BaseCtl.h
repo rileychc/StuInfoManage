@@ -33,10 +33,11 @@ class BaseCtl {
     ~BaseCtl() {}
     bool insert();
     MYSQL_RES *select();
-    MYSQL_RES *select(string &slc_dst, string &key_dst);
+    MYSQL_RES *select(string &slc_dst, string &key_dst,
+                      bool a); // 带目标的查询操作
     bool update(string &upd, string &updtg, string &tg);
     bool mdelete(string &aco, string &tg, string &keytg);
-    void date_erase_char(string &str);
+    void date_erase_char(string &str); // 删除输入中的“-”字符
 };
 
 #endif // _SQL_H_
